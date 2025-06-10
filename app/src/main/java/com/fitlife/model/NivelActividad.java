@@ -20,3 +20,4 @@ public enum NivelActividad {
         return name();  // devuelve el nombre del enum, p.ej. "MEDIO_BAJO"
     }
 }
+//dfadad

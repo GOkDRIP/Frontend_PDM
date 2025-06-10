@@ -11,7 +11,7 @@
         app:menu="@menu/profile_menu"
         android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"/>
 
-    <!-- Aquí irá el contenido de cada pantalla -->
+    <!-- Aquí irá el contenido de cada pantall //dfadad -->
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"

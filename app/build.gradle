@@ -65,7 +65,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
 
-    // Para que exista okhttp3.JavaNetCookieJar
+    // Para que exista okhttp3.JavaNetCookieJar         <!-- dfadad -->
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.9.0'
 
 

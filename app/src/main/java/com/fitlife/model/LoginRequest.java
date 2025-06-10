@@ -9,3 +9,5 @@ public class LoginRequest {
     }
     // getters si los necesitas…
 }
+
+//dfadad
