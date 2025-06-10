@@ -1,23 +1,15 @@
+// EntrenamientoActivity.java
 package com.fitlife.ui;
 
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import com.fitlife.R;
-import com.fitlife.conexionServer.RetrofitClient;
-import com.fitlife.conexionServer.FitLifeService;
-import com.fitlife.model.LoginRequest;
-import com.fitlife.model.LoginResponse;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import android.content.Intent;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
-
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.fitlife.R;
 
 public class EntrenamientoActivity extends AppCompatActivity {
     @Override
@@ -25,13 +17,39 @@ public class EntrenamientoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        // Inflamos contenido específico:
+        // Inflamos contenido específico
         getLayoutInflater()
                 .inflate(R.layout.fragment_entrenamiento,
                         findViewById(R.id.container), true);
 
+        // Configuramos la barra superior (AppBar)
+        MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
+        setSupportActionBar(topAppBar);
+
         setupBottomNavigation();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.profile_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_profile) {
+            startActivity(new Intent(this, ProfileActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Fuerza a Android a refrescar el menú de opciones
+        invalidateOptionsMenu();
+    }
+
 
     private void setupBottomNavigation() {
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
@@ -39,7 +57,7 @@ public class EntrenamientoActivity extends AppCompatActivity {
         nav.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.navigation_nutricion) {
                 startActivity(new Intent(this, NutricionActivity.class));
-                overridePendingTransition(0,0);
+                overridePendingTransition(0, 0);
                 finish();
                 return true;
             }

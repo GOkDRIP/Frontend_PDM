@@ -1,21 +1,15 @@
+// NutricionActivity.java
 package com.fitlife.ui;
 
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import com.fitlife.R;
-import com.fitlife.conexionServer.RetrofitClient;
-import com.fitlife.conexionServer.FitLifeService;
-import com.fitlife.model.LoginRequest;
-import com.fitlife.model.LoginResponse;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import android.content.Intent;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.fitlife.R;
 
 public class NutricionActivity extends AppCompatActivity {
     @Override
@@ -23,11 +17,37 @@ public class NutricionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
+        // Inflamos contenido específico
         getLayoutInflater()
                 .inflate(R.layout.fragment_nutricion,
                         findViewById(R.id.container), true);
 
+        // Configuramos la barra superior (AppBar)
+        MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
+        setSupportActionBar(topAppBar);
+
         setupBottomNavigation();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.profile_menu, menu);
+        return true;
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Fuerza a Android a refrescar el menú de opciones
+        invalidateOptionsMenu();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_profile) {
+            startActivity(new Intent(this, ProfileActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setupBottomNavigation() {

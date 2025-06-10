@@ -41,6 +41,8 @@
 
         <activity android:name=".ui.EntrenamientoActivity" />
         <activity android:name=".ui.NutricionActivity" />
+        <activity android:name=".ui.ProfileActivity"/>
+        <activity android:name=".ui.EditProfileActivity"/>
 
 
 

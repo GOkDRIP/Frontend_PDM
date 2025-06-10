@@ -4,10 +4,15 @@ import com.fitlife.model.LoginRequest;
 import com.fitlife.model.LoginResponse;
 import com.fitlife.model.RegisterRequest;
 import com.fitlife.model.RegisterResponse;
+import com.fitlife.model.ProfileResponse;
+import com.fitlife.model.EditProfileRequest;
+import com.fitlife.model.GenericResponse;
 import com.fitlife.model.ErrorResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
+import retrofit2.http.GET;
+
 
 public interface FitLifeService {
     @POST("api/login")
@@ -16,6 +21,12 @@ public interface FitLifeService {
 
     @POST("api/register")
     Call<RegisterResponse> register(@Body RegisterRequest req);
+
+    @GET("api/perfil")         // <<< aquí
+    Call<ProfileResponse> getProfile();
+
+    @POST("api/editarPerfil")  // <<< y aquí
+    Call<GenericResponse> editProfile(@Body EditProfileRequest req);
 
 
 }
