@@ -1,23 +1,14 @@
 package com.fitlife.ui;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import com.fitlife.R;
-import com.fitlife.conexionServer.RetrofitClient;
-import com.fitlife.conexionServer.FitLifeService;
-import com.fitlife.model.LoginRequest;
-import com.fitlife.model.LoginResponse;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import android.content.Intent;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.fitlife.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import android.view.MenuItem;
-
-
 
 public class EntrenamientoActivity extends AppCompatActivity {
     @Override
@@ -25,10 +16,17 @@ public class EntrenamientoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        // Inflamos contenido específico:
-        getLayoutInflater()
+        // Inflar fragmento dentro del contenedor
+        View fragmentView = getLayoutInflater()
                 .inflate(R.layout.fragment_entrenamiento,
                         findViewById(R.id.container), true);
+
+        // Obtener botón desde la vista inflada
+        Button btnRegistrar = fragmentView.findViewById(R.id.btn_registrar_progreso);
+        btnRegistrar.setOnClickListener(v -> {
+            Intent intent = new Intent(EntrenamientoActivity.this, RegistrarProgresoActivity.class);
+            startActivity(intent);
+        });
 
         setupBottomNavigation();
     }
@@ -39,7 +37,7 @@ public class EntrenamientoActivity extends AppCompatActivity {
         nav.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.navigation_nutricion) {
                 startActivity(new Intent(this, NutricionActivity.class));
-                overridePendingTransition(0,0);
+                overridePendingTransition(0, 0);
                 finish();
                 return true;
             }

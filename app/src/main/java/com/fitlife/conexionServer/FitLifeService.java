@@ -1,5 +1,7 @@
 package com.fitlife.conexionServer;
 
+import com.fitlife.model.AgregarProgresoRequest;
+import com.fitlife.model.GenericResponse;
 import com.fitlife.model.LoginRequest;
 import com.fitlife.model.LoginResponse;
 import com.fitlife.model.RegisterRequest;
@@ -17,5 +19,7 @@ public interface FitLifeService {
     @POST("api/register")
     Call<RegisterResponse> register(@Body RegisterRequest req);
 
+    @POST("api/agregarProgreso")
+    Call<GenericResponse> agregarProgreso(@Body AgregarProgresoRequest request);
 
 }
