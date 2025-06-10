@@ -17,12 +17,12 @@ import retrofit2.http.GET;
 public interface FitLifeService {
     @POST("api/login")
     Call<LoginResponse> login(@Body LoginRequest req);
-    // …añade aquí register(), getRutinas(), etc.
+    // …añade aquí register(), getRutinas(), etc
 
     @POST("api/register")
     Call<RegisterResponse> register(@Body RegisterRequest req);
 
-    @GET("api/perfil")         // <<< aquí
+    @GET("api/perfil")         // <<< aqui
     Call<ProfileResponse> getProfile();
 
     @POST("api/editarPerfil")  // <<< y aqui
