@@ -16,7 +16,7 @@ public class RetrofitClient {
 
     public static synchronized FitLifeService getService() {
         if (retrofit == null) {
-            // 1) Cookie manager que acepta todas las cookie
+            // 1) Cookie manager que acepta todas las cookies
             CookieManager cookieManager = new CookieManager();
             cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
 
