@@ -52,7 +52,10 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,
                             "Bienvenido " + resp.body().nombre,
                             Toast.LENGTH_LONG).show();
-                    // Intent → MainActivity, guardar SharedPrefs, etc.
+                            Intent i = new Intent(LoginActivity.this, EntrenamientoActivity.class);
+                            startActivity(i);
+                            finish();
+
                 } else {
                     Toast.makeText(LoginActivity.this,
                             "Error: credenciales inválidas",

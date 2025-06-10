@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_entrenamiento"
+        android:icon="@drawable/ic_entrenamiento"
+        android:title="Entrenamiento"/>
+    <item
+        android:id="@+id/navigation_nutricion"
+        android:icon="@drawable/ic_nutricion"
+        android:title="Nutrición"/>
+</menu>
