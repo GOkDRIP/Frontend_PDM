@@ -30,5 +30,7 @@ public interface FitLifeService {
     Call<GenericResponse> editProfile(@Body EditProfileRequest req);
 
     @POST("api/agregarProgreso")
-    Call<GenericResponse> agregarProgreso(@Body AgregarProgresoRequest request);
+    Call<GenericResponse> agregarProgreso(@Body AgregarProgresoRequest req);
+
+
 }
