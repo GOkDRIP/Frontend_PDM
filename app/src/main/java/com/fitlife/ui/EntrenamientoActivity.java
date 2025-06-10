@@ -1,15 +1,18 @@
-// EntrenamientoActivity.java
 package com.fitlife.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.appbar.MaterialToolbar;
+
 import com.fitlife.R;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class EntrenamientoActivity extends AppCompatActivity {
     @Override
@@ -17,14 +20,21 @@ public class EntrenamientoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        // Inflamos contenido específico
-        getLayoutInflater()
+        // Inflar contenido específico dentro del contenedor
+        View fragmentView = getLayoutInflater()
                 .inflate(R.layout.fragment_entrenamiento,
                         findViewById(R.id.container), true);
 
-        // Configuramos la barra superior (AppBar)
+        // Configurar AppBar
         MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
         setSupportActionBar(topAppBar);
+
+        // Botón registrar progreso
+        Button btnRegistrar = fragmentView.findViewById(R.id.btn_registrar_progreso);
+        btnRegistrar.setOnClickListener(v -> {
+            Intent intent = new Intent(EntrenamientoActivity.this, RegistrarProgresoActivity.class);
+            startActivity(intent);
+        });
 
         setupBottomNavigation();
     }
@@ -43,13 +53,12 @@ public class EntrenamientoActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
-        // Fuerza a Android a refrescar el menú de opciones
-        invalidateOptionsMenu();
+        invalidateOptionsMenu(); // Refrescar el menú al volver
     }
-
 
     private void setupBottomNavigation() {
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
@@ -65,4 +74,3 @@ public class EntrenamientoActivity extends AppCompatActivity {
         });
     }
 }
-//dfadad

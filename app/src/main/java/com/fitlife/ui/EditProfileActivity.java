@@ -18,6 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class EditProfileActivity extends AppCompatActivity {
     private EditText etEdad, etPeso, etAltura, etObjetivo;
     private Spinner spinnerNivel;

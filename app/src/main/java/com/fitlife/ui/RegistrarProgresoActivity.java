@@ -84,7 +84,7 @@ public class RegistrarProgresoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<GenericResponse> call, Response<GenericResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(RegistrarProgresoActivity.this, response.body().mensaje, Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrarProgresoActivity.this, response.body().message, Toast.LENGTH_LONG).show();
                     finish(); // Cierra la actividad después del registro exitoso
                 } else {
                     Toast.makeText(RegistrarProgresoActivity.this, "Error al enviar progreso", Toast.LENGTH_LONG).show();
