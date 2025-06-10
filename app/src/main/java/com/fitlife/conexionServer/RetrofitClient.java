@@ -30,7 +30,7 @@ public class RetrofitClient {
                     .addInterceptor(logging)
                     .build();
 
-            // 4) Gson lenient por si hay ligeras imperfecciones en el JSON
+            // 4) Gson lenient por si hay ligeras imperfecciones en el JSO n
             Gson gson = new GsonBuilder()
                     .setLenient()
                     .create();
