@@ -7,3 +7,4 @@ public class EditProfileRequest {
     public String nivelActividad;
     public String objetivo;
 }
+//dfadad
