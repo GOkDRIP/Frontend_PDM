@@ -25,7 +25,7 @@ public interface FitLifeService {
     @GET("api/perfil")         // <<< aquí
     Call<ProfileResponse> getProfile();
 
-    @POST("api/editarPerfil")  // <<< y aquí
+    @POST("api/editarPerfil")  // <<< y aqui
     Call<GenericResponse> editProfile(@Body EditProfileRequest req);
 
 
