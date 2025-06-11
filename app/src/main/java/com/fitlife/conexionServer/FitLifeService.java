@@ -8,11 +8,15 @@ import com.fitlife.model.RegisterResponse;
 import com.fitlife.model.ProfileResponse;
 import com.fitlife.model.EditProfileRequest;
 import com.fitlife.model.GenericResponse;
+import com.fitlife.model.ListarComidasResponse;
+import com.fitlife.model.RegistrarComidaRequest;
+
 import com.fitlife.model.ErrorResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 
 
 public interface FitLifeService {
@@ -31,6 +35,16 @@ public interface FitLifeService {
 
     @POST("api/agregarProgreso")
     Call<GenericResponse> agregarProgreso(@Body AgregarProgresoRequest req);
+
+    @GET("api/listarComidas")
+    Call<ListarComidasResponse> listarComidas();
+
+
+    @POST("api/registrarComida")
+    Call<GenericResponse> registrarComida(@Body RegistrarComidaRequest req);
+
+
+
 
 
 }

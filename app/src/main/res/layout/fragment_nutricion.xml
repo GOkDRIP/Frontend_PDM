@@ -7,5 +7,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pantalla Nutrición"/>
+
+    <Button
+        android:id="@+id/btnListarComidas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver comidas de hoy"
+        android:layout_margin="16dp"/>
+
 </FrameLayout>
     <!-- dfadad -->

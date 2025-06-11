@@ -68,5 +68,8 @@ dependencies {
     // Para que exista okhttp3.JavaNetCookieJar         <!-- dfadad -->
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.9.0'
 
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+
 
 }

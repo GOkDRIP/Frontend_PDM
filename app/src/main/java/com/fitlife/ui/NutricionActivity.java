@@ -1,10 +1,12 @@
-// NutricionActivity.java
 package com.fitlife.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -17,15 +19,30 @@ public class NutricionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        // Inflamos contenido específico
-        getLayoutInflater()
-                .inflate(R.layout.fragment_nutricion,
-                        findViewById(R.id.container), true);
+        // 1) Localizamos el FrameLayout contenedor
+        ViewGroup container = findViewById(R.id.container);
 
-        // Configuramos la barra superior (AppBar)
+        // 2) Inflamos fragment_nutricion.xml SIN attachToRoot
+        View fragmentView = getLayoutInflater().inflate(
+                R.layout.fragment_nutricion,
+                container,
+                false
+        );
+
+        // 3) Lo añadimos manualmente al contenedor
+        container.addView(fragmentView);
+
+        // 4) Ahora podemos buscar el botón dentro de fragmentView
+        Button btnListar = fragmentView.findViewById(R.id.btnListarComidas);
+        btnListar.setOnClickListener(v ->
+                startActivity(new Intent(this, ListarComidasActivity.class))
+        );
+
+        // 5) Configuramos la AppBar y menú
         MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
         setSupportActionBar(topAppBar);
 
+        // 6) Navegación inferior
         setupBottomNavigation();
     }
 
@@ -34,10 +51,10 @@ public class NutricionActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.profile_menu, menu);
         return true;
     }
+
     @Override
     protected void onResume() {
         super.onResume();
-        // Fuerza a Android a refrescar el menú de opciones
         invalidateOptionsMenu();
     }
 
@@ -56,7 +73,7 @@ public class NutricionActivity extends AppCompatActivity {
         nav.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.navigation_entrenamiento) {
                 startActivity(new Intent(this, EntrenamientoActivity.class));
-                overridePendingTransition(0,0);
+                overridePendingTransition(0, 0);
                 finish();
                 return true;
             }
@@ -64,4 +81,3 @@ public class NutricionActivity extends AppCompatActivity {
         });
     }
 }
-//dfadad
