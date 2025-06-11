@@ -1,28 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- activity_listar_comidas.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-    <!-- Resumen -->
+    <!-- Tu resumen -->
     <TextView
         android:id="@+id/tvResumen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:textStyle="bold"/>
+        android:text="Has consumido X kcal de Y recomendadas."
+        android:textSize="16sp"
+        android:paddingBottom="8dp"/>
 
-    <!-- RecyclerView para la lista -->
+    <!-- CABECERA DE COLUMNAS -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="4dp"
+        android:background="#EEEEEE">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:text="Comida"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="Kcal"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="Carbs (g)"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="Prot (g)"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="Grasas (g)"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!-- Tu RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvComidas"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:paddingTop="4dp"/>
 
-    <!-- Botón para agregar nueva comida -->
     <Button
         android:id="@+id/btnAgregarComida"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar otra comida"/>
+        android:text="AGREGAR OTRA COMIDA"/>
 </LinearLayout>

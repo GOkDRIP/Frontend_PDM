@@ -10,10 +10,10 @@
 
     <Button
         android:id="@+id/btnListarComidas"
-        android:layout_width="match_parent"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:text="Ver comidas de hoy"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp"
+        android:text="Ver comidas de hoy" />
 
 </FrameLayout>
     <!-- dfadad -->
