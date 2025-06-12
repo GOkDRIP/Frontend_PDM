@@ -48,7 +48,7 @@
         <activity android:name=".ui.ListarProgresosActivity"/>
         <activity android:name=".ui.VerRutinaActualActivity"/>
         <activity android:name=".ui.AsignarRutinaActivity"/>
-
+        <activity android:name=".ui.ObjetivosDiaActivity"/>
 
 
 

@@ -15,7 +15,8 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class EntrenamientoActivity extends AppCompatActivity {
-    private static final int REQ_RUTINA = 2001;
+    private static final int REQ_RUTINA     = 2001;
+    private static final int REQ_OBJETIVOS  = 2002;   // nuevo request-code
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,31 +30,38 @@ public class EntrenamientoActivity extends AppCompatActivity {
         MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
         setSupportActionBar(topAppBar);
 
-        // botón para registrar progreso
-        Button btnRegistrar = fragmentView.findViewById(R.id.btn_registrar_progreso);
-        btnRegistrar.setOnClickListener(v ->
-                startActivity(new Intent(this, RegistrarProgresoActivity.class))
-        );
+        // Registrar progreso
+        fragmentView.<Button>findViewById(R.id.btn_registrar_progreso)
+                .setOnClickListener(v ->
+                        startActivity(new Intent(this, RegistrarProgresoActivity.class))
+                );
 
-        // botón para listar progresos
-        Button btnListar = fragmentView.findViewById(R.id.btn_listar_progresos);
-        btnListar.setOnClickListener(v ->
-                startActivity(new Intent(this, ListarProgresosActivity.class))
-        );
+        // Listar progresos
+        fragmentView.<Button>findViewById(R.id.btn_listar_progresos)
+                .setOnClickListener(v ->
+                        startActivity(new Intent(this, ListarProgresosActivity.class))
+                );
 
-        // === Nuevo botón para ir a la pantalla principal de rutinas ===
-        Button btnIrRutina = fragmentView.findViewById(R.id.btn_ir_rutina_principal);
-        btnIrRutina.setOnClickListener(v ->
-                startActivityForResult(
-                        new Intent(this, VerRutinaActualActivity.class),
-                        REQ_RUTINA
-                )
-        );
-        // =================================================================
+        // Ver rutina actual
+        fragmentView.<Button>findViewById(R.id.btn_ir_rutina_principal)
+                .setOnClickListener(v ->
+                        startActivityForResult(
+                                new Intent(this, VerRutinaActualActivity.class),
+                                REQ_RUTINA
+                        )
+                );
+
+        // NUEVO: Objetivos del día
+        fragmentView.<Button>findViewById(R.id.btn_objetivos_dia)
+                .setOnClickListener(v ->
+                        startActivityForResult(
+                                new Intent(this, ObjetivosDiaActivity.class),
+                                REQ_OBJETIVOS
+                        )
+                );
 
         setupBottomNavigation();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,7 +81,7 @@ public class EntrenamientoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        invalidateOptionsMenu(); // Refrescar el menú al volver
+        invalidateOptionsMenu();
     }
 
     private void setupBottomNavigation() {

@@ -35,4 +35,11 @@
         android:text="Ver Rutina Actual"
         android:layout_marginTop="16dp"/>
 
+    <Button
+        android:id="@+id/btn_objetivos_dia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Objetivos del Día"
+        android:layout_marginTop="16dp"/>
+
 </LinearLayout>

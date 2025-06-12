@@ -15,6 +15,7 @@ import com.fitlife.model.AsignarRutinaResponse;
 import com.fitlife.model.Rutina;
 import com.fitlife.model.RutinaRequest;
 import com.fitlife.model.VerRutinaActualResponse;
+import com.fitlife.model.ObjetivosDiaResponse;
 import com.fitlife.model.ErrorResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -69,6 +70,8 @@ public interface FitLifeService {
     @POST("api/asignarRutina")
     Call<AsignarRutinaResponse> postAsignarRutina(@Body RutinaRequest request);
 
+    @GET("api/objetivosDia")
+    Call<ObjetivosDiaResponse> getObjetivosDia();
 
 
 
