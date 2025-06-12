@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_listar_progresos"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_padding"
+    android:fitsSystemWindows="true">
+
+    <!-- Fila de filtros -->
+    <LinearLayout
+        android:id="@+id/layout_filtros"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/filter_padding"
+        android:background="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvDesde"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/control_height"
+            android:layout_weight="1"
+            android:hint="@string/hint_desde"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/bg_edittext_rounded"
+            android:padding="@dimen/control_padding"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:id="@+id/tvHasta"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/control_height"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/filter_inner_margin"
+            android:hint="@string/hint_hasta"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/bg_edittext_rounded"
+            android:padding="@dimen/control_padding"
+            android:contentDescription="@null"/>
+
+        <Button
+            android:id="@+id/btnFiltrar"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/control_height"
+            android:layout_marginStart="@dimen/filter_inner_margin"
+            android:text="@string/filtrar"
+            android:paddingHorizontal="@dimen/control_padding"
+            android:minHeight="@dimen/control_height"/>
+    </LinearLayout>
+
+    <!-- Separador -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginVertical="@dimen/filter_margin_vertical"
+        android:background="@color/divider"
+        app:layout_constraintTop_toBottomOf="@id/layout_filtros"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Lista de progresos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerProgresos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/filter_margin_vertical"
+        android:paddingBottom="72dp"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <!-- ProgressBar centrado -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="@dimen/progress_size"
+        android:layout_height="@dimen/progress_size"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/recyclerProgresos"
+        app:layout_constraintBottom_toBottomOf="@id/recyclerProgresos"
+        app:layout_constraintStart_toStartOf="@id/recyclerProgresos"
+        app:layout_constraintEnd_toEndOf="@id/recyclerProgresos"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

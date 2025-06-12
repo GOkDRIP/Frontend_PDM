@@ -1,0 +1,10 @@
+<resources>
+    <dimen name="activity_padding">16dp</dimen>
+    <dimen name="filter_padding">8dp</dimen>
+    <dimen name="filter_inner_margin">8dp</dimen>
+    <dimen name="filter_margin_vertical">12dp</dimen>
+    <dimen name="control_height">48dp</dimen>
+    <dimen name="control_padding">12dp</dimen>
+    <dimen name="recycler_padding">16dp</dimen>
+    <dimen name="progress_size">48dp</dimen>
+</resources>

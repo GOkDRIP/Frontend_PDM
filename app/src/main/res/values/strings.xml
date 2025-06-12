@@ -6,5 +6,13 @@
     </string-array>
 
     <string name="prompt_nivel_actividad">Selecciona tu nivel de actividad</string>
+
+    <string name="hint_desde">Desde</string>
+    <string name="hint_hasta">Hasta</string>
+    <string name="filtrar">Filtrar</string>
+    <string name="cd_desde">Fecha desde</string>
+    <string name="cd_hasta">Fecha hasta</string>
+    <string name="nutricion_titulo">Pantalla Nutrición</string>
+    <string name="ver_comidas_hoy">Ver comidas de hoy</string>
 </resources>
 

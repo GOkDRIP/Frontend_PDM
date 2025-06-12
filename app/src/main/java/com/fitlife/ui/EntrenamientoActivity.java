@@ -20,24 +20,29 @@ public class EntrenamientoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        // Inflar contenido específico dentro del contenedor
         View fragmentView = getLayoutInflater()
                 .inflate(R.layout.fragment_entrenamiento,
                         findViewById(R.id.container), true);
 
-        // Configurar AppBar
         MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
         setSupportActionBar(topAppBar);
 
-        // Botón registrar progreso
+        // botón para registrar progreso (ya lo tenías)
         Button btnRegistrar = fragmentView.findViewById(R.id.btn_registrar_progreso);
         btnRegistrar.setOnClickListener(v -> {
-            Intent intent = new Intent(EntrenamientoActivity.this, RegistrarProgresoActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, RegistrarProgresoActivity.class));
         });
+
+        // ==== NUEVO botón para listar progresos ====
+        Button btnListar = fragmentView.findViewById(R.id.btn_listar_progresos);
+        btnListar.setOnClickListener(v -> {
+            startActivity(new Intent(this, ListarProgresosActivity.class));
+        });
+        // ==========================================
 
         setupBottomNavigation();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

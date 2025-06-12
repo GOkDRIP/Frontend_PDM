@@ -1,19 +1,28 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_nutricion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="16dp">
 
+    <!-- Título con el mismo estilo que en Entrenamiento -->
     <TextView
+        android:id="@+id/tvNutricionTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pantalla Nutrición"/>
+        android:text="@string/nutricion_titulo"
+        android:textSize="18sp"
+        android:layout_marginBottom="24dp"/>
 
+    <!-- Botón igual al de Entrenamiento: match_parent + marginBottom -->
     <Button
         android:id="@+id/btnListarComidas"
-        android:layout_width="230dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Ver comidas de hoy" />
+        android:text="@string/ver_comidas_hoy"
+        android:layout_marginBottom="16dp"/>
 
-</FrameLayout>
-    <!-- dfadad -->
+</LinearLayout>

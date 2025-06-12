@@ -10,14 +10,16 @@ import com.fitlife.model.EditProfileRequest;
 import com.fitlife.model.GenericResponse;
 import com.fitlife.model.ListarComidasResponse;
 import com.fitlife.model.RegistrarComidaRequest;
-
+import com.fitlife.model.ListarProgresosResponse;
 import com.fitlife.model.ErrorResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 import retrofit2.http.Header;
 
+import java.util.Map;
 
 public interface FitLifeService {
     @POST("api/login")
@@ -43,6 +45,16 @@ public interface FitLifeService {
     @POST("api/registrarComida")
     Call<GenericResponse> registrarComida(@Body RegistrarComidaRequest req);
 
+    @GET("api/listarProgresos")
+    Call<ListarProgresosResponse> listarProgresos(
+            @Query("desde") String desde,
+            @Query("hasta") String hasta
+    );
+
+    @POST("api/listarProgresos")
+    Call<ListarProgresosResponse> listarProgresosPost(
+            @Body Map<String, String> filtros
+    );
 
 
 

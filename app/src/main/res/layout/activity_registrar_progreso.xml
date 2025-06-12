@@ -1,42 +1,53 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Campo fecha sólo lectura, clicable -->
     <EditText
         android:id="@+id/et_fecha"
-        android:hint="Fecha (YYYY-MM-DD)"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:minHeight="48dp"
-        android:layout_height="wrap_content"/>
+        android:hint="Fecha (YYYY-MM-DD)"
+        android:focusable="false"
+        android:clickable="true"
+        android:inputType="none"
+        android:paddingEnd="12dp"/>
 
     <EditText
         android:id="@+id/et_peso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:hint="Peso"
         android:inputType="numberDecimal"
-        android:minHeight="48dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_marginTop="12dp"/>
 
     <EditText
         android:id="@+id/et_calorias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:hint="Calorías"
         android:inputType="number"
-        android:layout_width="match_parent"
-        android:minHeight="48dp"
-        android:layout_height="wrap_content"/>
+        android:layout_marginTop="12dp"/>
 
     <EditText
         android:id="@+id/et_observaciones"
-        android:hint="Observaciones"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:minHeight="48dp"
-        android:layout_height="wrap_content"/>
+        android:hint="Observaciones"
+        android:layout_marginTop="12dp"/>
 
     <Button
         android:id="@+id/btn_enviar_progreso"
-        android:text="Enviar Progreso"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Enviar Progreso"
+        android:layout_marginTop="16dp"/>
 </LinearLayout>
