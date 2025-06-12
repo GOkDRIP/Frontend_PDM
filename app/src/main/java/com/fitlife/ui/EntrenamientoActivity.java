@@ -15,6 +15,8 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class EntrenamientoActivity extends AppCompatActivity {
+    private static final int REQ_RUTINA = 2001;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,18 +29,27 @@ public class EntrenamientoActivity extends AppCompatActivity {
         MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
         setSupportActionBar(topAppBar);
 
-        // botón para registrar progreso (ya lo tenías)
+        // botón para registrar progreso
         Button btnRegistrar = fragmentView.findViewById(R.id.btn_registrar_progreso);
-        btnRegistrar.setOnClickListener(v -> {
-            startActivity(new Intent(this, RegistrarProgresoActivity.class));
-        });
+        btnRegistrar.setOnClickListener(v ->
+                startActivity(new Intent(this, RegistrarProgresoActivity.class))
+        );
 
-        // ==== NUEVO botón para listar progresos ====
+        // botón para listar progresos
         Button btnListar = fragmentView.findViewById(R.id.btn_listar_progresos);
-        btnListar.setOnClickListener(v -> {
-            startActivity(new Intent(this, ListarProgresosActivity.class));
-        });
-        // ==========================================
+        btnListar.setOnClickListener(v ->
+                startActivity(new Intent(this, ListarProgresosActivity.class))
+        );
+
+        // === Nuevo botón para ir a la pantalla principal de rutinas ===
+        Button btnIrRutina = fragmentView.findViewById(R.id.btn_ir_rutina_principal);
+        btnIrRutina.setOnClickListener(v ->
+                startActivityForResult(
+                        new Intent(this, VerRutinaActualActivity.class),
+                        REQ_RUTINA
+                )
+        );
+        // =================================================================
 
         setupBottomNavigation();
     }

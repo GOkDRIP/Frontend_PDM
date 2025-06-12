@@ -11,6 +11,10 @@ import com.fitlife.model.GenericResponse;
 import com.fitlife.model.ListarComidasResponse;
 import com.fitlife.model.RegistrarComidaRequest;
 import com.fitlife.model.ListarProgresosResponse;
+import com.fitlife.model.AsignarRutinaResponse;
+import com.fitlife.model.Rutina;
+import com.fitlife.model.RutinaRequest;
+import com.fitlife.model.VerRutinaActualResponse;
 import com.fitlife.model.ErrorResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -20,6 +24,7 @@ import retrofit2.http.Query;
 import retrofit2.http.Header;
 
 import java.util.Map;
+import java.util.List;
 
 public interface FitLifeService {
     @POST("api/login")
@@ -55,6 +60,14 @@ public interface FitLifeService {
     Call<ListarProgresosResponse> listarProgresosPost(
             @Body Map<String, String> filtros
     );
+    @GET("api/verRutinaActual")
+    Call<VerRutinaActualResponse> getVerRutinaActual();
+
+    @GET("api/rutinas")
+    Call<List<Rutina>> getTodasLasRutinas();
+
+    @POST("api/asignarRutina")
+    Call<AsignarRutinaResponse> postAsignarRutina(@Body RutinaRequest request);
 
 
 

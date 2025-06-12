@@ -46,6 +46,8 @@
         <activity android:name=".ui.ListarComidasActivity"/>
         <activity android:name=".ui.RegistrarComidaActivity"/>
         <activity android:name=".ui.ListarProgresosActivity"/>
+        <activity android:name=".ui.VerRutinaActualActivity"/>
+        <activity android:name=".ui.AsignarRutinaActivity"/>
 
 
 
