@@ -1,3 +1,4 @@
+// File: NutricionActivity.java
 package com.fitlife.ui;
 
 import android.content.Intent;
@@ -19,7 +20,7 @@ public class NutricionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        // 1) Localizamos el FrameLayout contenedor
+        // 1) Contenedor de fragmentos
         ViewGroup container = findViewById(R.id.container);
 
         // 2) Inflamos fragment_nutricion.xml SIN attachToRoot
@@ -32,10 +33,16 @@ public class NutricionActivity extends AppCompatActivity {
         // 3) Lo añadimos manualmente al contenedor
         container.addView(fragmentView);
 
-        // 4) Ahora podemos buscar el botón dentro de fragmentView
+        // 4) Botón "Listar comidas"
         Button btnListar = fragmentView.findViewById(R.id.btnListarComidas);
         btnListar.setOnClickListener(v ->
                 startActivity(new Intent(this, ListarComidasActivity.class))
+        );
+
+        // 4b) NUEVO: Botón "Ver Feed social"
+        Button btnFeed = fragmentView.findViewById(R.id.btnVerFeed);
+        btnFeed.setOnClickListener(v ->
+                startActivity(new Intent(this, FeedActivity.class))
         );
 
         // 5) Configuramos la AppBar y menú

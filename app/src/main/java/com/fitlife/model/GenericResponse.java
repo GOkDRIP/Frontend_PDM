@@ -10,3 +10,5 @@ public class GenericResponse {
     @SerializedName("mensaje")
     public String message;
 }
+
+

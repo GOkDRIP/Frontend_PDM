@@ -53,6 +53,8 @@
         <activity android:name=".ui.RestablecerContrasenaActivity"/>
         <activity android:name=".ui.DesafiosActivity"/>
         <activity android:name=".ui.MisDesafiosActivity"/>
+        <activity android:name=".ui.NuevaComidaActivity"/>
+        <activity android:name=".ui.FeedActivity"/>
 
 
 

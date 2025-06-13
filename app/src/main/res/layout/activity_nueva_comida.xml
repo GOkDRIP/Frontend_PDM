@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Preview de la imagen -->
+        <ImageView
+            android:id="@+id/ivPreview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:background="@android:color/darker_gray"
+            android:contentDescription="Imagen Preview"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Botones cámara / galería -->
+        <Button
+            android:id="@+id/btnTomarFoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tomar fotos"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnElegirGaleria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Elegir de la galeria"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Campos de texto -->
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etCalorias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Calorias"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etCarbohidratos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="Carbohidratos"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProteinas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="Proteinas"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etGrasas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="Grasas"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descripcion"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Botón Publicar -->
+        <Button
+            android:id="@+id/btnPublicar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Publicarr" />
+
+    </LinearLayout>
+</ScrollView>
