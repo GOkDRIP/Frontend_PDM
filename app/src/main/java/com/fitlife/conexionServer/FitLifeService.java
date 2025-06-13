@@ -4,6 +4,7 @@ import com.fitlife.model.AgregarProgresoRequest;
 import com.fitlife.model.DesafiosResponse;
 import com.fitlife.model.LoginRequest;
 import com.fitlife.model.LoginResponse;
+import com.fitlife.model.MisDesafiosResponse;
 import com.fitlife.model.RegisterRequest;
 import com.fitlife.model.RegisterResponse;
 import com.fitlife.model.ProfileResponse;
@@ -29,6 +30,10 @@ import retrofit2.http.POST;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import retrofit2.http.Header;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Field;
+
+
 
 import java.util.Map;
 import java.util.List;
@@ -87,5 +92,20 @@ public interface FitLifeService {
 
     @GET("api/desafios")
     Call<DesafiosResponse> obtenerDesafios();
+
+    @POST("api/unirse")
+    Call<GenericResponse> unirseDesafio(@Body Map<String, Integer> body);
+
+    @GET("api/mis-desafios")
+    Call<MisDesafiosResponse> getMisDesafios();
+
+    @FormUrlEncoded
+    @POST("api/abandonar")
+    Call<GenericResponse> abandonarDesafio(@Field("id") int desafioId);
+
+    @FormUrlEncoded
+    @POST("api/completar")
+    Call<GenericResponse> completarDesafio(@Field("id") int desafioId);
+
 
 }

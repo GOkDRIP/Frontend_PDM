@@ -15,8 +15,8 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class EntrenamientoActivity extends AppCompatActivity {
-    private static final int REQ_RUTINA     = 2001;
-    private static final int REQ_OBJETIVOS  = 2002;   // nuevo request-code
+    private static final int REQ_RUTINA = 2001;
+    private static final int REQ_OBJETIVOS = 2002;   // nuevo request-code
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +59,15 @@ public class EntrenamientoActivity extends AppCompatActivity {
                                 REQ_OBJETIVOS
                         )
                 );
+        //VEr desafios
         fragmentView.<Button>findViewById(R.id.btn_ver_desafios)
                 .setOnClickListener(v ->
                         startActivity(new Intent(this, DesafiosActivity.class))
+                );
+        //Mis desafioos
+        fragmentView.<Button>findViewById(R.id.btn_mis_desafios)
+                .setOnClickListener(v ->
+                        startActivity(new Intent(this, MisDesafiosActivity.class))
                 );
 
         setupBottomNavigation();

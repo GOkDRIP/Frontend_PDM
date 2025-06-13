@@ -48,6 +48,13 @@
         android:layout_height="wrap_content"
         android:text="Ver Desafíos"
         android:layout_marginTop="16dp"/>
+    <Button
+        android:id="@+id/btn_mis_desafios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mis Desafíos"
+        android:layout_marginTop="16dp"/>
+
 
 
 </LinearLayout>

@@ -37,6 +37,14 @@
             android:text="01/01/2024 - 31/01/2024"
             android:textColor="@android:color/darker_gray"
             android:textSize="12sp" />
+        <Button
+            android:id="@+id/btnUnirse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unirse"
+            android:layout_marginTop="8dp"/>
+
+
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
