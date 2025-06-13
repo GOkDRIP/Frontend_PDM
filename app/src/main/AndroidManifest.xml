@@ -51,7 +51,7 @@
         <activity android:name=".ui.ObjetivosDiaActivity"/>
         <activity android:name=".ui.RecuperarContrasenaActivity"/>
         <activity android:name=".ui.RestablecerContrasenaActivity"/>
-
+        <activity android:name=".ui.DesafiosActivity"/>
 
 
 

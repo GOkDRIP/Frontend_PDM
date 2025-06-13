@@ -59,6 +59,10 @@ public class EntrenamientoActivity extends AppCompatActivity {
                                 REQ_OBJETIVOS
                         )
                 );
+        fragmentView.<Button>findViewById(R.id.btn_ver_desafios)
+                .setOnClickListener(v ->
+                        startActivity(new Intent(this, DesafiosActivity.class))
+                );
 
         setupBottomNavigation();
     }

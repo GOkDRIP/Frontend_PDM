@@ -1,6 +1,7 @@
 package com.fitlife.conexionServer;
 
 import com.fitlife.model.AgregarProgresoRequest;
+import com.fitlife.model.DesafiosResponse;
 import com.fitlife.model.LoginRequest;
 import com.fitlife.model.LoginResponse;
 import com.fitlife.model.RegisterRequest;
@@ -84,5 +85,7 @@ public interface FitLifeService {
     @POST("api/restablecer")
     Call<RestablecerContrasenaResponse> restablecerContrasena(@Body RestablecerContrasenaRequest request);
 
+    @GET("api/desafios")
+    Call<DesafiosResponse> obtenerDesafios();
 
 }
