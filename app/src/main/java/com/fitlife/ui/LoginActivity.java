@@ -14,6 +14,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import android.content.Intent;
+import android.widget.TextView;
+
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etEmail, etPassword;
@@ -42,6 +44,13 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
+
+        TextView forgotPasswordLink = findViewById(R.id.forgotPassword);
+        forgotPasswordLink.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RecuperarContrasenaActivity.class);
+            startActivity(intent);
+        });
+
     }
     private void login(String email, String password) {
         LoginRequest req = new LoginRequest(email, password);

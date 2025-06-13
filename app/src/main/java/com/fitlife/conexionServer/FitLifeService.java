@@ -16,6 +16,11 @@ import com.fitlife.model.Rutina;
 import com.fitlife.model.RutinaRequest;
 import com.fitlife.model.VerRutinaActualResponse;
 import com.fitlife.model.ObjetivosDiaResponse;
+import com.fitlife.model.RecuperarContrasenaResponse;
+import com.fitlife.model.RecuperarContrasenaRequest;
+import com.fitlife.model.RestablecerContrasenaResponse;
+import com.fitlife.model.RestablecerContrasenaRequest;
+
 import com.fitlife.model.ErrorResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -73,6 +78,11 @@ public interface FitLifeService {
     @GET("api/objetivosDia")
     Call<ObjetivosDiaResponse> getObjetivosDia();
 
+    @POST("api/recuperar")
+    Call<RecuperarContrasenaResponse> recuperarContrasena(@Body RecuperarContrasenaRequest request);
+
+    @POST("api/restablecer")
+    Call<RestablecerContrasenaResponse> restablecerContrasena(@Body RestablecerContrasenaRequest request);
 
 
 }

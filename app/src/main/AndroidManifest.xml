@@ -49,6 +49,8 @@
         <activity android:name=".ui.VerRutinaActualActivity"/>
         <activity android:name=".ui.AsignarRutinaActivity"/>
         <activity android:name=".ui.ObjetivosDiaActivity"/>
+        <activity android:name=".ui.RecuperarContrasenaActivity"/>
+        <activity android:name=".ui.RestablecerContrasenaActivity"/>
 
 
 
