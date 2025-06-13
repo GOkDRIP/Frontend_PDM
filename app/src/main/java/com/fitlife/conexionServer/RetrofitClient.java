@@ -11,7 +11,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "http://13.61.161.23:3306/fitlife/";
+    private static final String BASE_URL = "http://13.61.161.23:8080/fitlife/";
     private static Retrofit retrofit = null;
 
     public static synchronized FitLifeService getService() {
