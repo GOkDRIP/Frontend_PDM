@@ -2,7 +2,7 @@ name: 📦 Build WAR y dejarlo descargable
  
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
