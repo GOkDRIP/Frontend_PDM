@@ -14,5 +14,11 @@
     <string name="cd_hasta">Fecha hasta</string>
     <string name="nutricion_titulo">Pantalla Nutrición</string>
     <string name="ver_comidas_hoy">Ver comidas de hoy</string>
+    <string name="tomar_foto">Tomar foto</string>
+    <string name="elegir_de_galeria">Elegir de galería</string>
+    <string name="analizar_comida">Analizar comida</string>
+    <string name="analisis_preview">Vista previa</string>
+    <string name="analisis_esperando">Esperando imagen para analizar…</string>
+
 </resources>
 

@@ -1,6 +1,7 @@
 package com.fitlife.conexionServer;
 
 import com.fitlife.model.AgregarProgresoRequest;
+import com.fitlife.model.AnalisisResponse;
 import com.fitlife.model.AsignarRutinaResponse;
 import com.fitlife.model.DesafiosResponse;
 import com.fitlife.model.EditProfileRequest;
@@ -139,4 +140,8 @@ public interface FitLifeService {
     @FormUrlEncoded
     @POST("api/comidas/eliminar")
     Call<GenericResponse> eliminarComida(@Field("id") int idPublicacion);
+
+    @POST("api/analyze")
+    Call<AnalisisResponse> analizaEtiqueta(@Body Map<String,String> body);
+
 }
