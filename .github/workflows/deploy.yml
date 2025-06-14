@@ -54,4 +54,4 @@ jobs:
           name: fitlife-latest.apk                    # nombre en Drive
           folderId: 1oEs-qkxtIqJyrx7qP7oLklp_DbfctiOg #${{ secrets.GDRIVE_FOLDER_ID }}
           overwrite: true
-          encoded: false
+          encoded: true
