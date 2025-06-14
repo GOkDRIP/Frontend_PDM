@@ -1,49 +1,55 @@
-name: 🚀 Build y subir WAR a Google Drive
+name: 📦 Build APK Android
 
 on:
   push:
-    branches: [ main ]      # ajusta si tu rama es distinta
+    branches: [ main ]      # ← cambia si tu rama es otra
   workflow_dispatch:
 
 jobs:
-  build-and-upload:
+  build-apk:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Clonar el repo
+      # 1 Checkout del repo
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2) Configurar Java 21 (Temurin)
+      # 2 Instalar JDK 21
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
 
-      # 3) Cache de dependencias Maven
-      - name: Cache Maven
+      # 3 Cache de Gradle (acelera builds siguientes)
+      - name: Cache Gradle
         uses: actions/cache@v4
         with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-maven
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: gradle-${{ runner.os }}-
 
-      # 4) Compilar el WAR
-      - name: Build WAR
-        run: mvn -B clean package -DskipTests
+      # 4 Dar permisos a gradlew
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
 
-      # 5) Verificar que existe el WAR
-      - name: List WAR file
-        run: ls -lh target/*.war
+      # 5 Compilar APK debug (igual que Android Studio)
+      - name: Build APK (Debug)
+        run: ./gradlew :app:assembleDebug --build-cache --parallel --daemon
 
-      # 6) Subir a Google Drive
-      - name: Upload WAR to Google Drive
-        uses: mathisve/gdrive-upload-action@main   # acción mantenida
+      # 6 Subir APK como artefacto descargable
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
         with:
-          filename: target/fitlife.war             # ajusta si tu nombre es otro
-          name: fitlife-latest.war                 # nombre que tendrá en Drive
-          folderId: ${{ secrets.GDRIVE_FOLDER_ID }}
+          name: app-debug.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload APK to Google Drive
+        uses: mathisve/gdrive-upload-action@main      # acción pública y activa
+        with:
           credentials: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
-          encoded: false                           # ← pon true si envías el JSON en base64
-          overwrite: true                          # sobreescribe versiones previas
+          filename: app/build/outputs/apk/debug/app-debug.apk
+          name: fitlife-latest.apk                    # nombre en Drive
+          folderId: ${{ secrets.GDRIVE_FOLDER_ID }}
