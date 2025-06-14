@@ -1,4 +1,4 @@
-name: 🚀 Build APK Android
+name: 🚀 Subir WAR a Google Drive
 
 on:
   push:
@@ -6,42 +6,36 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-apk:
+  upload-war:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Clonar el repositorio
       - name: Checkout
         uses: actions/checkout@v3
 
-      # 2) Configurar Java 21
       - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: '21'
 
-      # 3) Cache de Gradle
-      - name: Cache Gradle
+      - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: gradle-${{ runner.os }}-
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven
 
-      # 4) Dar permisos de ejecución a gradlew
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
+      - name: Build WAR
+        run: mvn -B clean package -DskipTests
 
-      # 5) Compilar el APK con optimización
-      - name: Build APK (Debug)
-        run: ./gradlew :app:assembleDebug --build-cache --parallel --daemon
+      - name: List WAR
+        run: ls -lh target/*.war
 
-      # 6) Subir APK como artefacto
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - name: Upload WAR to Google Drive
+        uses: w9jds/google-drive-upload@v1
         with:
-          name: app-debug.apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          credentials: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
+          filename: target/fitlife.war
+          folder: ${{ secrets.GDRIVE_FOLDER_ID }}
+          name: fitlife-latest.war
