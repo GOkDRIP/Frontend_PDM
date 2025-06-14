@@ -1,5 +1,5 @@
 name: 📦 Build WAR y dejarlo descargable
- 
+
 on:
   push:
     branches: [ main ]
@@ -32,7 +32,7 @@ jobs:
           mvn clean package -DskipTests
 
       - name: 📤 Subir WAR como artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: fitlife-backend-war
           path: fitlife/target/*.war
