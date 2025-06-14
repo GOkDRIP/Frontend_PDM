@@ -2,7 +2,7 @@ name: 🚀 Build y subir WAR a Google Drive
 
 on:
   push:
-    branches: [ main ]  # Cambia "main" por tu rama si es otra
+    branches: [ main ]      # ajusta si tu rama es distinta
   workflow_dispatch:
 
 jobs:
@@ -10,20 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Clonar el repositorio
+      # 1) Clonar el repo
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # 2) Configurar Java 21
+      # 2) Configurar Java 21 (Temurin)
       - name: Set up JDK 21
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
 
-      # 3) Cache de dependencias de Maven
-      - name: Cache Maven dependencies
-        uses: actions/cache@v3
+      # 3) Cache de dependencias Maven
+      - name: Cache Maven
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -33,15 +33,17 @@ jobs:
       - name: Build WAR
         run: mvn -B clean package -DskipTests
 
-      # 5) Verificar que se ha generado
-      - name: Listar WAR generado
+      # 5) Verificar que existe el WAR
+      - name: List WAR file
         run: ls -lh target/*.war
 
-      # 6) Subir WAR a Google Drive
+      # 6) Subir a Google Drive
       - name: Upload WAR to Google Drive
-        uses: w9jds/github-action-upload-google-drive@v1.0.3
+        uses: mathisve/gdrive-upload-action@main   # acción mantenida
         with:
-          credentials: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
-          filename: target/fitlife.war
-          name: fitlife-latest.war
+          filename: target/fitlife.war             # ajusta si tu nombre es otro
+          name: fitlife-latest.war                 # nombre que tendrá en Drive
           folderId: ${{ secrets.GDRIVE_FOLDER_ID }}
+          credentials: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
+          encoded: false                           # ← pon true si envías el JSON en base64
+          overwrite: true                          # sobreescribe versiones previas
