@@ -37,7 +37,7 @@ jobs:
 
       # 5) Compilar el APK con optimización
       - name: Build APK (Debug)
-        run: ./gradlew assembleDebug --build-cache --parallel --daemon
+        run: ./gradlew :app:assembleDebug --build-cache --parallel --daemon
 
       # 6) Subir APK como artefacto
       - name: Upload APK
