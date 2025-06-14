@@ -45,6 +45,12 @@ public class NutricionActivity extends AppCompatActivity {
                 startActivity(new Intent(this, FeedActivity.class))
         );
 
+        Button btnAnalisis = fragmentView.findViewById(R.id.btnAnalisis);
+        btnAnalisis.setOnClickListener(v ->
+                startActivity(new Intent(this, AnalisisComidaActivity.class))
+        );
+
+
         // 5) Configuramos la AppBar y menú
         MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
         setSupportActionBar(topAppBar);
@@ -87,4 +93,5 @@ public class NutricionActivity extends AppCompatActivity {
             return false;
         });
     }
+
 }

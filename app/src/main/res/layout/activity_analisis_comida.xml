@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivAnalisisPreview"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/analisis_preview"
+        android:background="#EEE"/>
+
+    <Button
+        android:id="@+id/btnTomarFoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tomar_foto"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/btnElegirGaleria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/elegir_de_galeria"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/btnAnalizar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/analizar_comida"
+        android:layout_marginTop="24dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvResultado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/analisis_esperando"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:lineSpacingExtra="4dp"/>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
