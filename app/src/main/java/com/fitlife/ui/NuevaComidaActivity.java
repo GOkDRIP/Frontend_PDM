@@ -27,11 +27,10 @@ import retrofit2.Response;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
 
 public class NuevaComidaActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 100;
-    private static final int REQUEST_IMAGE_PICK = 101;
+    private static final int REQUEST_IMAGE_PICK    = 101;
 
     private Uri imageUri;
     private ImageView ivPreview;
@@ -124,6 +123,8 @@ public class NuevaComidaActivity extends AppCompatActivity {
                                     Toast.makeText(NuevaComidaActivity.this,
                                             gr.message != null ? gr.message : "Publicado",
                                             Toast.LENGTH_LONG).show();
+                                    // Avisamos al FeedActivity que publique OK
+                                    setResult(RESULT_OK);
                                     finish();
                                 } else {
                                     Toast.makeText(NuevaComidaActivity.this,
@@ -138,7 +139,8 @@ public class NuevaComidaActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(@NonNull Call<GenericResponse> call, @NonNull Throwable t) {
+                        public void onFailure(@NonNull Call<GenericResponse> call,
+                                              @NonNull Throwable t) {
                             Toast.makeText(NuevaComidaActivity.this,
                                     "Fallo de red: " + t.getMessage(),
                                     Toast.LENGTH_LONG).show();

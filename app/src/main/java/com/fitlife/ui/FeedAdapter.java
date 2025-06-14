@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.fitlife.R;
@@ -62,6 +64,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
                 item.isHaDadoLike() ? R.drawable.ic_heart_filled : R.drawable.ic_heart_outline
         );
 
+        // Like / Unlike
         holder.btnLike.setOnClickListener(v -> {
             int pos = holder.getBindingAdapterPosition();
             if (pos == RecyclerView.NO_POSITION) return;
@@ -83,11 +86,67 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
                         notifyItemChanged(pos);
                     }
                 }
+
                 @Override
-                public void onFailure(@NonNull Call<GenericResponse> call,@NonNull Throwable t) {
-                    // Manejar error si es necesario
+                public void onFailure(@NonNull Call<GenericResponse> call,
+                                      @NonNull Throwable t) {
+                    // Opcional: manejar error de red
                 }
             });
+        });
+
+        // Habilitar long click y mostrar diálogo de confirmación para eliminar
+        holder.itemView.setLongClickable(true);
+        holder.itemView.setOnLongClickListener(v -> {
+            int pos = holder.getBindingAdapterPosition();
+            if (pos == RecyclerView.NO_POSITION) return true;
+            ComidaFeedItem toDelete = items.get(pos);
+
+            new AlertDialog.Builder(holder.itemView.getContext())
+                    .setTitle("Eliminar publicación")
+                    .setMessage("¿Seguro que quieres eliminar esta publicación?")
+                    .setPositiveButton("Eliminar", (dialog, which) -> {
+                        FitLifeService service = RetrofitClient.getService();
+                        service.eliminarComida(toDelete.getIdPublicacion())
+                                .enqueue(new Callback<GenericResponse>() {
+                                    @Override
+                                    public void onResponse(@NonNull Call<GenericResponse> call,
+                                                           @NonNull Response<GenericResponse> response) {
+                                        GenericResponse body = response.body();
+                                        if (body != null && body.success) {
+                                            items.remove(pos);
+                                            notifyItemRemoved(pos);
+                                            Toast.makeText(
+                                                    holder.itemView.getContext(),
+                                                    body.message,
+                                                    Toast.LENGTH_SHORT
+                                            ).show();
+                                        } else {
+                                            Toast.makeText(
+                                                    holder.itemView.getContext(),
+                                                    body != null
+                                                            ? body.message
+                                                            : "Error al eliminar",
+                                                    Toast.LENGTH_SHORT
+                                            ).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(@NonNull Call<GenericResponse> call,
+                                                          @NonNull Throwable t) {
+                                        Toast.makeText(
+                                                holder.itemView.getContext(),
+                                                "Fallo de red al eliminar",
+                                                Toast.LENGTH_SHORT
+                                        ).show();
+                                    }
+                                });
+                    })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
+
+            return true;
         });
     }
 
@@ -103,14 +162,14 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivFoto       = itemView.findViewById(R.id.ivFoto);
-            tvUsuario    = itemView.findViewById(R.id.tvUsuario);
-            tvNombre     = itemView.findViewById(R.id.tvNombreComida);
-            tvMacros     = itemView.findViewById(R.id.tvMacros);
-            tvDescripcion= itemView.findViewById(R.id.tvDescripcion);
-            tvFecha      = itemView.findViewById(R.id.tvFecha);
-            tvLikes      = itemView.findViewById(R.id.tvLikes);
-            btnLike      = itemView.findViewById(R.id.btnLike);
+            ivFoto        = itemView.findViewById(R.id.ivFoto);
+            tvUsuario     = itemView.findViewById(R.id.tvUsuario);
+            tvNombre      = itemView.findViewById(R.id.tvNombreComida);
+            tvMacros      = itemView.findViewById(R.id.tvMacros);
+            tvDescripcion = itemView.findViewById(R.id.tvDescripcion);
+            tvFecha       = itemView.findViewById(R.id.tvFecha);
+            tvLikes       = itemView.findViewById(R.id.tvLikes);
+            btnLike       = itemView.findViewById(R.id.btnLike);
         }
     }
 }

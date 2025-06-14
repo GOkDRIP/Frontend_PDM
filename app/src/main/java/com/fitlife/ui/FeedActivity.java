@@ -14,15 +14,14 @@ import com.fitlife.conexionServer.RetrofitClient;
 import com.fitlife.conexionServer.FitLifeService;
 import com.fitlife.model.ComidaFeedResponse;
 import com.fitlife.model.ComidaFeedItem;
-import com.fitlife.model.GenericResponse;
+import java.util.Collections;
+import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import java.util.Collections;
-import java.util.List;
 
 public class FeedActivity extends AppCompatActivity {
-    private static final int REQUEST_POST = 123;
+    private static final int REQUEST_POST = 100;
     private RecyclerView rvFeed;
     private FeedAdapter adapter;
 
@@ -37,20 +36,21 @@ public class FeedActivity extends AppCompatActivity {
         rvFeed.setAdapter(adapter);
 
         FloatingActionButton fab = findViewById(R.id.fabAddPost);
-        fab.setOnClickListener(v ->
-                startActivityForResult(
-                        new Intent(FeedActivity.this, NuevaComidaActivity.class),
-                        REQUEST_POST
-                )
-        );
+        // Lanza NuevaComidaActivity para resultado
+        fab.setOnClickListener(v -> {
+            Intent i = new Intent(FeedActivity.this, NuevaComidaActivity.class);
+            startActivityForResult(i, REQUEST_POST);
+        });
 
         loadFeed();
     }
 
+    // Cuando vuelva de publicar
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_POST && resultCode == RESULT_OK) {
+            // recargamos feed
             loadFeed();
         }
     }
@@ -61,25 +61,17 @@ public class FeedActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<ComidaFeedResponse> call,
                                    @NonNull Response<ComidaFeedResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    ComidaFeedResponse body = response.body();
-                    if (body.isSuccess()) {
-                        List<ComidaFeedItem> items = body.getData();
-                        adapter.updateItems(items);
-                    } else {
-                        Toast.makeText(FeedActivity.this,
-                                "Error cargando el feed",
-                                Toast.LENGTH_LONG).show();
-                    }
+                if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
+                    List<ComidaFeedItem> items = response.body().getData();
+                    adapter.updateItems(items);
                 } else {
                     Toast.makeText(FeedActivity.this,
-                            "Error HTTP: " + response.code(),
+                            "Error cargando el feed",
                             Toast.LENGTH_LONG).show();
                 }
             }
             @Override
-            public void onFailure(@NonNull Call<ComidaFeedResponse> call,
-                                  @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<ComidaFeedResponse> call, @NonNull Throwable t) {
                 Toast.makeText(FeedActivity.this,
                         "Fallo de red: " + t.getMessage(),
                         Toast.LENGTH_LONG).show();

@@ -135,4 +135,8 @@ public interface FitLifeService {
     @FormUrlEncoded
     @POST("api/unlike")
     Call<GenericResponse> unlike(@Field("id") int idPublicacion);
+
+    @FormUrlEncoded
+    @POST("api/comidas/eliminar")
+    Call<GenericResponse> eliminarComida(@Field("id") int idPublicacion);
 }
