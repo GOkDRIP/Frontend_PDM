@@ -7,7 +7,7 @@
     android:background="@color/backgroundLight"
     android:fitsSystemWindows="true">
 
-    <!-- AppBarLayout para controlar el área de status bar -->
+    <!-- AppBarLayout + Toolbar en la zona de status bar -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,16 +20,14 @@
             android:layout_height="?attr/actionBarSize"
             android:backgroundTint="@color/colorPrimary"
             android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
-            android:gravity="center"
-            android:paddingStart="56dp"
-            android:paddingEnd="56dp"
-            app:menu="@menu/profile_menu"
+            app:title="Pantalla Actual"
             app:titleTextAppearance="@style/FitLifeToolbarTitle"
             app:titleTextColor="@color/white"
-            app:navigationIconTint="@color/white" />
+            app:navigationIconTint="@color/white"
+            app:menu="@menu/profile_menu" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Contenedor de fragments, justo debajo de la AppBar -->
+    <!-- Contenedor de fragments justo debajo de la AppBar -->
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
@@ -37,17 +35,19 @@
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_marginBottom="56dp" />
 
-    <!-- BottomNavigation con selector de color para ítems -->
+    <!-- BottomNavigationView anclado al fondo, ocupa toda la parte inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:backgroundTint="@color/backgroundCard"
+        android:fitsSystemWindows="true"
+        android:backgroundTint="?attr/colorSurface"
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
         android:elevation="8dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
