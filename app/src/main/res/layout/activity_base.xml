@@ -20,7 +20,7 @@
             android:layout_height="?attr/actionBarSize"
             android:backgroundTint="@color/colorPrimary"
             android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
-            app:title="Pantalla Actual"
+            app:title="FitLife"
             app:titleTextAppearance="@style/FitLifeToolbarTitle"
             app:titleTextColor="@color/white"
             app:navigationIconTint="@color/white"
