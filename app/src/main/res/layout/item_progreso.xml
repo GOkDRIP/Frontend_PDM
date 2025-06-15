@@ -1,40 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_margin="8dp"
     android:layout_height="wrap_content"
-    android:elevation="4dp"
-    android:padding="12dp">
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginTop="12dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="4dp"
+    android:backgroundTint="@color/backgroundCard">
 
     <LinearLayout
         android:orientation="vertical"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvFecha"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Fecha"
             android:textStyle="bold"
-            android:text="Fecha"/>
+            android:textColor="@color/textPrimary"
+            android:textSize="16sp"
+            android:layout_marginBottom="4dp"/>
 
         <TextView
             android:id="@+id/tvPeso"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Peso"/>
+            android:text="Peso"
+            android:textColor="@color/textSecondary"
+            android:layout_marginBottom="2dp"/>
 
         <TextView
             android:id="@+id/tvCalorias"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calorías"/>
+            android:text="Calorías"
+            android:textColor="@color/textSecondary"
+            android:layout_marginBottom="2dp"/>
 
         <TextView
             android:id="@+id/tvObservaciones"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Observaciones"/>
+            android:text="Observaciones"
+            android:textColor="@color/textSecondary"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_nutricion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:padding="16dp">
+    android:padding="24dp"
+    android:background="@color/white">
 
     <!-- Título -->
     <TextView
@@ -14,31 +16,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nutricion_titulo"
-        android:textSize="18sp"
-        android:layout_marginBottom="24dp"/>
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_marginBottom="32dp"/>
 
     <!-- Botón Listar Comidas -->
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnListarComidas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/ver_comidas_hoy"
-        android:layout_marginBottom="16dp"/>
+        style="@style/FitLifeButton"
+        android:text="@string/ver_comidas_hoy" />
 
-    <!-- Nuevo Botón Ver Feed Social -->
-    <Button
+    <!-- Botón Ver Feed Social -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnVerFeed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Red Social"
-        android:layout_marginBottom="16dp"/>
+        style="@style/FitLifeButton"
+        android:text="Red Social" />
 
-    <Button
+    <!-- Botón Analizar nueva comida -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAnalisis"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Analizar nueva comida"
-        android:layout_marginTop="16dp"/>
-
+        style="@style/FitLifeButton"
+        android:text="Analizar nueva comida" />
 
 </LinearLayout>

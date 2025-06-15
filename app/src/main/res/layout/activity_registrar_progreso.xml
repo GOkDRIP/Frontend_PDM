@@ -1,53 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundLight"
+    android:fitsSystemWindows="true"
+    android:paddingTop="?attr/actionBarSize"
+    android:padding="16dp">
 
-    <!-- Campo fecha sólo lectura, clicable -->
-    <EditText
-        android:id="@+id/et_fecha"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:hint="Fecha (YYYY-MM-DD)"
-        android:focusable="false"
-        android:clickable="true"
-        android:inputType="none"
-        android:paddingEnd="12dp"/>
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/et_peso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:hint="Peso"
-        android:inputType="numberDecimal"
-        android:layout_marginTop="12dp"/>
+        <!-- Fecha (solo lectura, clickable) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha (YYYY-MM-DD)"
+            android:layout_marginBottom="12dp">
 
-    <EditText
-        android:id="@+id/et_calorias"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:hint="Calorías"
-        android:inputType="number"
-        android:layout_marginTop="12dp"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_fecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="none"
+                android:importantForAutofill="no"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/et_observaciones"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:hint="Observaciones"
-        android:layout_marginTop="12dp"/>
+        <!-- Peso -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Peso"
+            android:layout_marginBottom="12dp">
 
-    <Button
-        android:id="@+id/btn_enviar_progreso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Enviar Progreso"
-        android:layout_marginTop="16dp"/>
-</LinearLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_peso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Calorías -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Calorías"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_calorias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Observaciones -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Observaciones"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_observaciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minLines="2"
+                android:inputType="textMultiLine"
+                android:gravity="top"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Botón enviar -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_enviar_progreso"
+            style="@style/FitLifeButton"
+            android:text="Enviar Progreso"/>
+    </LinearLayout>
+</ScrollView>

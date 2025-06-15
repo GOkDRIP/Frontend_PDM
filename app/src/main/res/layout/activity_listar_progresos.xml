@@ -5,6 +5,7 @@
     android:id="@+id/activity_listar_progresos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundLight"
     android:padding="@dimen/activity_padding"
     android:fitsSystemWindows="true">
 
@@ -15,23 +16,30 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="@dimen/filter_padding"
-        android:background="@android:color/white"
+        android:background="@color/backgroundCard"
+        android:elevation="2dp"
+        android:clipToPadding="false"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Fecha desde -->
         <TextView
             android:id="@+id/tvDesde"
             android:layout_width="0dp"
             android:layout_height="@dimen/control_height"
             android:layout_weight="1"
             android:hint="@string/hint_desde"
+            android:textColorHint="@color/textSecondary"
+            android:background="@drawable/bg_edittext_rounded"
+            android:paddingHorizontal="@dimen/control_padding"
+            android:gravity="center_vertical"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/bg_edittext_rounded"
-            android:padding="@dimen/control_padding"
-            android:contentDescription="@null"/>
+            android:textColor="@color/textPrimary"
+            android:textSize="14sp" />
 
+        <!-- Fecha hasta -->
         <TextView
             android:id="@+id/tvHasta"
             android:layout_width="0dp"
@@ -39,23 +47,27 @@
             android:layout_weight="1"
             android:layout_marginStart="@dimen/filter_inner_margin"
             android:hint="@string/hint_hasta"
+            android:textColorHint="@color/textSecondary"
+            android:background="@drawable/bg_edittext_rounded"
+            android:paddingHorizontal="@dimen/control_padding"
+            android:gravity="center_vertical"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/bg_edittext_rounded"
-            android:padding="@dimen/control_padding"
-            android:contentDescription="@null"/>
+            android:textColor="@color/textPrimary"
+            android:textSize="14sp" />
 
-        <Button
+        <!-- Botón filtrar -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFiltrar"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/control_height"
             android:layout_marginStart="@dimen/filter_inner_margin"
-            android:text="@string/filtrar"
-            android:paddingHorizontal="@dimen/control_padding"
-            android:minHeight="@dimen/control_height"/>
+            android:minHeight="@dimen/control_height"
+            style="@style/FitLifeButton"
+            android:text="@string/filtrar" />
     </LinearLayout>
 
-    <!-- Separador -->
+    <!-- Separador visual -->
     <View
         android:id="@+id/divider"
         android:layout_width="0dp"
@@ -64,7 +76,7 @@
         android:background="@color/divider"
         app:layout_constraintTop_toBottomOf="@id/layout_filtros"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Lista de progresos -->
     <androidx.recyclerview.widget.RecyclerView
@@ -77,9 +89,9 @@
         app:layout_constraintTop_toBottomOf="@id/divider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-    <!-- ProgressBar centrado -->
+    <!-- Carga -->
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
@@ -89,6 +101,6 @@
         app:layout_constraintTop_toTopOf="@id/recyclerProgresos"
         app:layout_constraintBottom_toBottomOf="@id/recyclerProgresos"
         app:layout_constraintStart_toStartOf="@id/recyclerProgresos"
-        app:layout_constraintEnd_toEndOf="@id/recyclerProgresos"/>
+        app:layout_constraintEnd_toEndOf="@id/recyclerProgresos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

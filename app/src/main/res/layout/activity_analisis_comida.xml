@@ -1,52 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundLight">
 
-    <ImageView
-        android:id="@+id/ivAnalisisPreview"
+    <!-- Imagen en tarjeta con borde redondeado -->
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/analisis_preview"
-        android:background="#EEE"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="1dp">
 
-    <Button
+        <ImageView
+            android:id="@+id/ivAnalisisPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/analisis_preview"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Botón para tomar foto -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnTomarFoto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/FitLifeButton"
         android:text="@string/tomar_foto"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="8dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnElegirGaleria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/FitLifeButton"
         android:text="@string/elegir_de_galeria"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAnalizar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/FitLifeButton"
         android:text="@string/analizar_comida"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="16dp" />
 
+
+    <!-- Resultado del análisis en tarjeta -->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:padding="16dp">
+        android:layout_marginBottom="16dp"
+        android:padding="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/backgroundCard">
 
         <TextView
             android:id="@+id/tvResultado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/analisis_esperando"
+            android:textColor="@color/textPrimary"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             android:lineSpacingExtra="4dp"/>
     </com.google.android.material.card.MaterialCardView>

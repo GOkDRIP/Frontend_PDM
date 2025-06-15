@@ -1,93 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/backgroundLight"
+    android:padding="16dp"
+    android:fillViewport="true">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
 
-        <!-- Preview de la imagen -->
-        <ImageView
-            android:id="@+id/ivPreview"
+        <!-- Vista previa de la imagen -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:background="@android:color/darker_gray"
-            android:contentDescription="Imagen Preview"
-            android:layout_marginBottom="16dp" />
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/ivPreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="Imagen Preview" />
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Botones cámara / galería -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnTomarFoto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tomar fotos"
+            style="@style/FitLifeButton"
+            android:text="Tomar foto"
             android:layout_marginBottom="8dp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnElegirGaleria"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Elegir de la galeria"
+            style="@style/FitLifeButton"
+            android:text="Elegir de la galería"
             android:layout_marginBottom="16dp" />
 
-        <!-- Campos de texto -->
-        <EditText
-            android:id="@+id/etNombre"
+        <!-- Campos de entrada -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:hint="Nombre">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/etCalorias"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Calorias"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:hint="Calorías">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCalorias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/etCarbohidratos"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:hint="Carbohidratos"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:hint="Carbohidratos (g)">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCarbohidratos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/etProteinas"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:hint="Proteinas"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:hint="Proteínas (g)">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProteinas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/etGrasas"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:hint="Grasas"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:hint="Grasas (g)">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etGrasas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/etDescripcion"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Descripcion"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="24dp"
+            android:hint="Descripción">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:minLines="3" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Botón Publicar -->
-        <Button
+        <!-- Botón publicar -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPublicar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Publicarr" />
+            style="@style/FitLifeButton"
+            android:text="Publicar" />
 
     </LinearLayout>
 </ScrollView>

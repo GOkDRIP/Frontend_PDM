@@ -1,79 +1,98 @@
-<!-- activity_listar_comidas.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundLight"
     android:padding="16dp">
 
-    <!-- Tu resumen -->
+    <!-- Resumen de calorías -->
     <TextView
         android:id="@+id/tvResumen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Has consumido X kcal de Y recomendadas."
-        android:textSize="16sp"
-        android:paddingBottom="8dp"/>
+        android:textColor="@color/textPrimary"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:paddingBottom="12dp" />
 
-    <!-- CABECERA DE COLUMNAS -->
+    <!-- Cabecera de tabla -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingVertical="4dp"
-        android:background="#EEEEEE">
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="4dp"
+        android:background="@color/backgroundCard"
+        android:elevation="2dp">
 
         <TextView
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:layout_height="wrap_content"
             android:text="Comida"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="@color/textPrimary"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="end"
             android:text="Kcal"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="@color/textPrimary"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="end"
             android:text="Carbs (g)"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="@color/textPrimary"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="end"
             android:text="Prot (g)"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="@color/textPrimary"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="end"
             android:text="Grasas (g)"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="@color/textPrimary"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
     </LinearLayout>
 
-    <!-- Tu RecyclerView -->
+    <!-- Lista de comidas -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvComidas"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingTop="4dp"/>
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:scrollbars="vertical" />
 
-    <Button
+    <!-- Botón para agregar comida -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAgregarComida"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="AGREGAR OTRA COMIDA"/>
+        style="@style/FitLifeButton"
+        android:text="Agregar otra comida"
+        android:layout_marginTop="12dp" />
+
 </LinearLayout>

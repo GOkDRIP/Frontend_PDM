@@ -1,39 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/backgroundLight"
     android:padding="24dp"
-    android:gravity="center">
+    android:gravity="center_horizontal">
 
+    <!-- Título -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Recuperar contraseña"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textColor="@color/textPrimary"
+        android:textAlignment="center"
         android:layout_marginBottom="24dp" />
 
-    <EditText
-        android:id="@+id/emailInput"
+    <!-- Email -->
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Correo electrónico"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:hint="Correo electrónico">
 
-    <Button
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Botón enviar -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/recuperarBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Enviar correo" />
+        style="@style/FitLifeButton"
+        android:text="Enviar correo"
+        android:layout_marginBottom="12dp" />
 
-    <Button
+    <!-- Botón ir a restablecer -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnIrARestablecer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/FitLifeButton"
         android:text="Ir a restablecer contraseña"
         android:visibility="gone"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>

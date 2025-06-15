@@ -1,70 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/backgroundLight"
+    android:fillViewport="true">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/et_nombre_comida"
+        <!-- Nombre de la comida -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre de la comida"
-            android:inputType="textPersonName"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp">
 
-        <EditText
-            android:id="@+id/et_calorias_comida"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_nombre_comida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Calorías -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Calorías"
-            android:inputType="number"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp">
 
-        <EditText
-            android:id="@+id/et_carbohidratos_comida"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_calorias_comida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Carbohidratos -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Carbohidratos (g)"
-            android:inputType="numberDecimal"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp">
 
-        <EditText
-            android:id="@+id/et_proteinas_comida"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_carbohidratos_comida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Proteínas -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Proteínas (g)"
-            android:inputType="numberDecimal"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp">
 
-        <EditText
-            android:id="@+id/et_grasas_comida"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_proteinas_comida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Grasas -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Grasas (g)"
-            android:inputType="numberDecimal"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp">
 
-        <EditText
-            android:id="@+id/et_observaciones_comida"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_grasas_comida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Observaciones -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Observaciones"
-            android:inputType="textMultiLine"
-            android:lines="3"
-            android:gravity="top"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp">
 
-        <Button
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_observaciones_comida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:gravity="top"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Botón guardar -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_guardar_comida"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Guardar comida"/>
-
+            style="@style/FitLifeButton"
+            android:text="Guardar comida"
+            android:layout_marginTop="8dp"/>
     </LinearLayout>
-
 </ScrollView>

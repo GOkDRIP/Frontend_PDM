@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layoutAsignarRutina"
-    android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundLight"
+    android:padding="16dp">
 
-    <!-- Lista de rutinas para elegir -->
+    <!-- Lista de rutinas con espacio inferior para no tapar contenido -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRutinas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="16dp"/>
+        android:clipToPadding="false"
+        android:paddingBottom="32dp"
+        android:scrollbars="vertical" />
 
-    <!-- Indicador de carga -->
-    <ProgressBar
-        android:id="@+id/progAsignar"
-        android:visibility="gone"
-        android:layout_gravity="center"
+    <!-- Indicador de carga centrado dentro de tarjeta para mayor visibilidad -->
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="@color/backgroundCard">
+
+        <ProgressBar
+            android:id="@+id/progAsignar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="16dp" />
+    </com.google.android.material.card.MaterialCardView>
 
 </FrameLayout>

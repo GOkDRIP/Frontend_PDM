@@ -1,38 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardRutina"
-    android:layout_margin="8dp"
+    android:layout_margin="12dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp">
+    android:backgroundTint="@color/backgroundCard"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:strokeColor="@color/colorPrimary"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:orientation="vertical"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <!-- Nombre -->
         <TextView
             android:id="@+id/tvItemNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre de rutina"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/textPrimary"
+            android:layout_marginBottom="4dp" />
 
         <!-- Descripción -->
         <TextView
             android:id="@+id/tvItemDescripcion"
-            android:layout_marginTop="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descripción"
+            android:textColor="@color/textSecondary"
+            android:layout_marginBottom="4dp"/>
 
         <!-- Nivel -->
         <TextView
             android:id="@+id/tvItemNivel"
-            android:layout_marginTop="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nivel"
+            android:textColor="@color/textSecondary"/>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

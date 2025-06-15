@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_margin="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginTop="12dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp">
+    android:backgroundTint="@color/backgroundCard"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:orientation="vertical"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Descripción del objetivo -->
         <TextView
             android:id="@+id/tvDescripcionObjetivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descripción del objetivo del día"
+            android:textColor="@color/textPrimary"
             android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_marginBottom="12dp" />
 
+        <!-- Botón completar -->
         <Button
             android:id="@+id/btnCompletarObjetivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Completar"
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:minHeight="48dp" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

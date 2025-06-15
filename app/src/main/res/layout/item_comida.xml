@@ -3,31 +3,49 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:paddingVertical="12dp"
+    android:paddingHorizontal="8dp"
+    android:background="@android:color/white"
+    android:elevation="1dp">
 
     <TextView
         android:id="@+id/tvNombre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="2"/>
+        android:layout_weight="2"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"/>
+
     <TextView
         android:id="@+id/tvCalorias"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:gravity="center"/>
+
     <TextView
         android:id="@+id/tvCarbs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:gravity="center"/>
+
     <TextView
         android:id="@+id/tvProt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:gravity="center"/>
+
     <TextView
         android:id="@+id/tvGrasas"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:gravity="center"/>
 </LinearLayout>
