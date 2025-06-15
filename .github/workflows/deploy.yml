@@ -1,57 +1,69 @@
-name: 📦 Build APK Android
-
+name: 📦 Build APK y subir a Google Drive
 on:
   push:
-    branches: [ main ]      # ← cambia si tu rama es otra
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  build-apk:
+  build-and-upload:
     runs-on: ubuntu-latest
-
     steps:
-      # 1 Checkout del repo
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # 2 Instalar JDK 21
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
 
-      # 3 Cache de Gradle (acelera builds siguientes)
-      - name: Cache Gradle
-        uses: actions/cache@v4
+      - uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: gradle-${{ runner.os }}-
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*','**/gradle-wrapper.properties') }}
 
-      # 4 Dar permisos a gradlew
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-
-      # 5 Compilar APK debug (igual que Android Studio)
       - name: Build APK (Debug)
-        run: ./gradlew :app:assembleDebug --build-cache --parallel --daemon
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :app:assembleDebug --build-cache --parallel --daemon
 
-      # 6 Subir APK como artefacto descargable
-      - name: Upload APK artifact
+      - name: Upload APK como artefacto
         uses: actions/upload-artifact@v4
         with:
           name: app-debug.apk
           path: app/build/outputs/apk/debug/app-debug.apk
 
-      - name: Upload APK to Google Drive
-        uses: mathisve/gdrive-upload-action@main      # acción pública y activa
+      # ─────────────────────────────────────────────────────────────
+      # 1) Subir a Drive (quedará “owned” por la Service Account)
+      # ─────────────────────────────────────────────────────────────
+      - id: upload
+        name: Upload APK to Google Drive
+        uses: mathisve/gdrive-upload-action@main
         with:
-          credentials: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
-          filename: app/build/outputs/apk/debug/app-debug.apk
-          name: fitlife-latest.apk                    # nombre en Drive
-          folderId: 1oEs-qkxtIqJyrx7qP7oLklp_DbfctiOg #${{ secrets.GDRIVE_FOLDER_ID }}
-          overwrite: true
-          encoded: true
+          credentials:  ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY_BASE64 }}
+          encoded:       true
+          filename:      app/build/outputs/apk/debug/app-debug.apk
+          name:          fitlife-${{ github.run_number }}.apk
+          folderId:      ${{ secrets.GDRIVE_FOLDER_ID }}
+          overwrite:     false            # mantiene versiones anteriores
+
+      # ─────────────────────────────────────────────────────────────
+      # 2) AUTENTICAR Service Account para poder llamar a la API
+      # ─────────────────────────────────────────────────────────────
+      - id: gauth
+        name: Auth as Service Account
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY_BASE64 }}
+          export_environment_variables: true   # nos da $GOOGLE_ACCESS_TOKEN
+
+      # ─────────────────────────────────────────────────────────────
+      # 3) Transferir la propiedad al usuario final
+      # ─────────────────────────────────────────────────────────────
+      - name: Make ${{ secrets.OWNER_EMAIL }} the owner
+        run: |
+          curl -s -X POST \
+            -H "Authorization: Bearer $GOOGLE_ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"role\":\"owner\",\"type\":\"user\",\"emailAddress\":\"${{ secrets.OWNER_EMAIL }}\"}" \
+            "https://www.googleapis.com/drive/v3/files/${{ steps.upload.outputs.fileId }}/permissions?transferOwnership=true"
