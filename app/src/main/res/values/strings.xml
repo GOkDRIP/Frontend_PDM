@@ -19,6 +19,7 @@
     <string name="analizar_comida">Analizar comida</string>
     <string name="analisis_preview">Vista previa</string>
     <string name="analisis_esperando">Esperando imagen para analizar…</string>
+    <string name="desc_logo_bienvenida">Logotipo de FitLife</string>
 
 </resources>
 

@@ -18,7 +18,16 @@
         android:textStyle="bold"
         android:textAlignment="center"
         android:gravity="center"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Imagen de bienvenida -->
+    <ImageView
+        android:id="@+id/ivLogoBienvenida"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="@string/desc_logo_bienvenida"
+        android:layout_marginBottom="40dp" />
 
     <!-- Botón Iniciar Sesión -->
     <com.google.android.material.button.MaterialButton
@@ -34,6 +43,6 @@
         style="@style/FitLifeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Registrarse"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:text="Registrarse" />
 </LinearLayout>
