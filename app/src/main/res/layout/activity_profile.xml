@@ -181,14 +181,26 @@
             style="@style/FitLifeButton"
             android:text="Editar información" />
 
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogout"
+            style="@style/FitLifeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:backgroundTint="@color/error"
+            android:text="Cerrar sesión"
+            android:textColor="@android:color/white" />
+
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEliminarCuenta"
             style="@style/FitLifeButton"
-            android:layout_width="209dp"
+            android:layout_width="379dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80px"
             android:backgroundTint="@color/error"
-            android:text="Eliminar mi cuenta"
-            android:layout_marginTop="24px"/>
-
+            android:text="Eliminar mi cuenta" />
 
 
     </LinearLayout>
