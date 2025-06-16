@@ -180,6 +180,13 @@
             android:id="@+id/btnEditProfile"
             style="@style/FitLifeButton"
             android:text="Editar información" />
+        <Button
+            android:id="@+id/btnEliminarCuenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eliminar mi cuenta"
+            android:layout_marginTop="24dp"/>
+
 
     </LinearLayout>
 </ScrollView>
