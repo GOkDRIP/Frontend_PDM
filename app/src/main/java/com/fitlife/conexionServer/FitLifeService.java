@@ -148,4 +148,8 @@ public interface FitLifeService {
 
     @DELETE("api/eliminar-usuario")
     Call<GenericResponse> eliminarUsuario();
+
+    @DELETE("api/eliminar-usuario")
+    Call<GenericResponse> eliminarUsuario(@Body Map<String,String> body);
+
 }

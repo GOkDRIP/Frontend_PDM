@@ -2,7 +2,9 @@ package com.fitlife.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
@@ -13,6 +15,11 @@ import com.fitlife.conexionServer.FitLifeService;
 import com.fitlife.conexionServer.RetrofitClient;
 import com.fitlife.model.GenericResponse;
 import com.fitlife.model.ProfileResponse;
+import com.fitlife.utils.SessionManager;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -106,42 +113,53 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void doEliminarUsuario() {
-        api.eliminarUsuario().enqueue(new Callback<GenericResponse>() {
-            @Override
-            public void onResponse(Call<GenericResponse> call,
-                                   Response<GenericResponse> resp) {
-                if (resp.isSuccessful()) {
-                    // HTTP 200 → borrado OK
-                    Toast.makeText(
-                            ProfileActivity.this,
-                            "Usuario eliminado correctamente",
-                            Toast.LENGTH_LONG
-                    ).show();
 
-                    // Redirigir a login
-                    Intent i = new Intent(ProfileActivity.this, LoginActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(i);
-                } else {
-                    // Cualquier otro código → error
-                    Toast.makeText(
-                            ProfileActivity.this,
-                            "Error al eliminar cuenta: código " + resp.code(),
-                            Toast.LENGTH_LONG
-                    ).show();
-                }
-            }
+        // 1) Pide la contraseña para confirmar
+        final EditText inputPwd = new EditText(this);
+        inputPwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
-            @Override
-            public void onFailure(Call<GenericResponse> call, Throwable t) {
-                Toast.makeText(
-                        ProfileActivity.this,
-                        "Fallo de red: " + (t.getMessage() == null ? "desconocido" : t.getMessage()),
-                        Toast.LENGTH_LONG
-                ).show();
-            }
-        });
+        new AlertDialog.Builder(this)
+                .setTitle("Confirmar contraseña")
+                .setView(inputPwd)
+                .setPositiveButton("Eliminar", (d, w) -> {
+
+                    // 2) Prepara JSON
+                    String email = tvEmail.getText().toString().trim();       // ya lo tenemos en pantalla
+                    String pwd   = inputPwd.getText().toString().trim();
+
+                    Map<String,String> body = new HashMap<>();
+                    body.put("email", email);
+                    body.put("password", pwd);
+
+                    // 3) Llamada a la API
+                    api.eliminarUsuario(body).enqueue(new Callback<GenericResponse>() {
+                        @Override
+                        public void onResponse(Call<GenericResponse> c, Response<GenericResponse> r) {
+                            if (r.isSuccessful() && r.body()!=null && r.body().success) {
+                                Toast.makeText(ProfileActivity.this,
+                                        "Cuenta eliminada", Toast.LENGTH_LONG).show();
+
+                                new SessionManager(getApplicationContext()).logout();
+
+                                Intent i = new Intent(ProfileActivity.this, LoginActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                            } else {
+                                Toast.makeText(ProfileActivity.this,
+                                        r.body()!=null ? r.body().message : "Error servidor",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        @Override public void onFailure(Call<GenericResponse> c, Throwable t) {
+                            Toast.makeText(ProfileActivity.this,
+                                    "Fallo red: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
     }
+
 
 
 

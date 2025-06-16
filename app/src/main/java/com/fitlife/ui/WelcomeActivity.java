@@ -1,32 +1,39 @@
 package com.fitlife.ui;
-import com.fitlife.R;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-public class WelcomeActivity extends AppCompatActivity {
+import com.fitlife.R;
+import com.fitlife.utils.SessionManager;
 
-    Button btnLogin, btnRegister;
+public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /* ⬇️ Comprueba si ya hay sesión */
+        SessionManager sm = new SessionManager(getApplicationContext());
+        if (sm.isLoggedIn()) {
+            startActivity(new Intent(this, EntrenamientoActivity.class));
+            finish();   // Saltamos la pantalla de bienvenida/login
+            return;
+        }
+
         setContentView(R.layout.activity_welcome);
 
-        btnLogin = findViewById(R.id.btnLogin);
-        btnRegister = findViewById(R.id.btnRegister);
+        Button btnLogin    = findViewById(R.id.btnLogin);
+        Button btnRegister = findViewById(R.id.btnRegister);
 
-        btnLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
-            startActivity(intent);
-        });
+        btnLogin.setOnClickListener(v ->
+                startActivity(new Intent(this, LoginActivity.class))
+        );
 
-        btnRegister.setOnClickListener(v -> {
-            Intent intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
-            startActivity(intent);
-        });
+        btnRegister.setOnClickListener(v ->
+                startActivity(new Intent(this, RegisterActivity.class))
+        );
     }
 }
-//dfadad

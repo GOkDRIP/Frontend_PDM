@@ -1,5 +1,6 @@
 package com.fitlife.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,12 +18,16 @@ import com.fitlife.model.ProfileResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import com.fitlife.utils.SessionManager;
+import com.google.android.material.button.MaterialButton;
+
+
 
 public class EditProfileActivity extends AppCompatActivity {
     private static final int REQUEST_EDIT_PROFILE = 1001;
     private EditText etEdad, etPeso, etAltura, etObjetivo;
     private Spinner spinnerNivel;
-    private Button btnSave;
+    private MaterialButton btnSave, btnLogout;
     private FitLifeService api;
     private ArrayAdapter<NivelActividad> nivelAdapter;
 
@@ -31,15 +36,17 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        // Bind views
-        etEdad       = findViewById(R.id.etEdad);
-        etPeso       = findViewById(R.id.etPeso);
-        etAltura     = findViewById(R.id.etAltura);
-        spinnerNivel = findViewById(R.id.spNivel);
-        etObjetivo   = findViewById(R.id.etObjetivo);
-        btnSave      = findViewById(R.id.btnSave);
+        // ---------- ENLAZAR VISTAS ----------
+        etEdad        = findViewById(R.id.etEdad);
+        etPeso        = findViewById(R.id.etPeso);
+        etAltura      = findViewById(R.id.etAltura);
+        spinnerNivel  = findViewById(R.id.spNivel);
+        etObjetivo    = findViewById(R.id.etObjetivo);
 
-        // Spinner setup
+        btnSave   = findViewById(R.id.btnSave);
+        btnLogout = findViewById(R.id.btnLogout);   // botón “Cerrar sesión”
+
+        // ---------- SPINNER NIVEL DE ACTIVIDAD ----------
         nivelAdapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
@@ -47,15 +54,28 @@ public class EditProfileActivity extends AppCompatActivity {
         );
         nivelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerNivel.setAdapter(nivelAdapter);
-        spinnerNivel.setPrompt(getString(R.string.prompt_nivel_actividad));
 
+        // ---------- RETROFIT ----------
         api = RetrofitClient.getService();
 
-        // Load existing profile
+        // ---------- CARGAR PERFIL ----------
         loadProfile();
 
+        // ---------- LISTENERS ----------
         btnSave.setOnClickListener(v -> saveProfile());
+
+        btnLogout.setOnClickListener(v -> {
+            // 1) Borra credenciales guardadas
+            new SessionManager(getApplicationContext()).logout();
+
+            // 2) Lanza LoginActivity limpiando el back-stack
+            Intent i = new Intent(EditProfileActivity.this, LoginActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+            // No hace falta finishAffinity() porque CLEAR_TASK ya vacía la pila
+        });
     }
+
 
     private void loadProfile() {
         api.getProfile().enqueue(new Callback<ProfileResponse>() {
