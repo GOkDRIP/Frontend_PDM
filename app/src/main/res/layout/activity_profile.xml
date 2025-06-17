@@ -179,6 +179,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEditProfile"
             style="@style/FitLifeButton"
+            android:layout_width="211dp"
             android:text="Editar información" />
 
         <com.google.android.material.button.MaterialButton
